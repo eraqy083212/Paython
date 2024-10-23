@@ -21,15 +21,9 @@ jobs:
         python-version: "3.10"
     - name: Install dependencies
       run:  pip install -r requirements.txt
-      
-  docker-build:
-
-    runs-on: ubuntu-latest
-#add
-    steps:
-     - name: Build Docker image
-       run: docker build  -t python-docker .
-     - name : Push Docker Image to ACR
-       run: docker push dummytest.azurecr.io/python:${{github.run_attempt}}
+    - name: Build Docker image
+      run: docker build  -t python-docker .
+    - name : Push Docker Image to ACR
+      run: docker push dummytest.azurecr.io/python:${{github.run_attempt}}
    
     
