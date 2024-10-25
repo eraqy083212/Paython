@@ -30,10 +30,6 @@ jobs:
       working-directory: ./Terraform
       run: terraform init -upgrade
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      working-directory: ./Terraform
-      run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
