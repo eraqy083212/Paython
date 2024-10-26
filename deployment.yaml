@@ -18,5 +18,6 @@ spec:
       containers:
       - name: python
         image: dummytest.azurecr.io/python:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
