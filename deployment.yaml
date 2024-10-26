@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: python-deployment
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: python
+template:
+metadata:
+labels:
+app: python
+spec:
+containers:
+— name: python-container
+image: dummytest.azurecr.io/python:latest
+ports:
+— containerPort: 5000
