@@ -31,10 +31,10 @@ jobs:
     - name: Build Docker image
       run: docker build  -t python-docker .
     - name : Tag Docker Image 
-      run : docker tag python-docker dummytest.azurecr.io/python:latest
+      run : docker tag python-docker dummytest.azurecr.io/python:${{github.run_number}}
      # Push Image To ACR
     - name : Push Docker Image to ACR
-      run: docker push dummytest.azurecr.io/python:latest
+      run: docker push dummytest.azurecr.io/python:${{github.run_number}}
 
   deploy:
      needs: build
