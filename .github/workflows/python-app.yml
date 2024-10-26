@@ -47,7 +47,8 @@ jobs:
        run: az login --service-principal -u ${{ secrets.SPAPPID }} -p ${{ secrets.SPPassword }} --tenant ${{ secrets.TenantID }}
      - name: Add AKS to CMD Contiext 
        run: az aks get-credentials --name ${{ secrets.AKSNAME }} --resource-group ${{ secrets.RG }}
-            
+     - name: Delete Existing Pods 
+       run : kubectl delete -f deployment.yaml         
      - name: Deploy To AKS 
        run : kubectl apply -f deployment.yaml
      
