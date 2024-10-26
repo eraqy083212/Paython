@@ -47,6 +47,10 @@ jobs:
        run: az login --service-principal -u ${{ secrets.SPAPPID }} -p ${{ secrets.SPPassword }} --tenant ${{ secrets.TenantID }}
      - name: Add AKS to CMD Contiext 
        run: az aks get-credentials --name ${{ secrets.AKSNAME }} --resource-group ${{ secrets.RG }}
+       
+     - name: Configuration Variable Substitution
+       uses: marigbede/variable-substitution@v1.0.1
+            
      - name: Deploy To AKS 
        run : kubectl apply -f deployment.yaml
      
