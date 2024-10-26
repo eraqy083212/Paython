@@ -12,7 +12,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     environment: Test
     steps:
@@ -36,5 +35,20 @@ jobs:
      # Push Image To ACR
     - name : Push Docker Image to ACR
       run: docker push dummytest.azurecr.io/python:latest
+
+  deploy:
+
+     runs-on: ubuntu-latest
+     environment: Test
+     steps:
+     - uses: actions/checkout@v4
+     - name : Azure CLI Login
+       working-directory: .
+       run: az login --service-principal -u ${{ secrets.SPAPPID }} -p ${{ secrets.SPPassword }} --tenant ${{ secrets.TenantID }}
+     - name: Add AKS to CMD Contiext 
+       run: az aks get-credentials --name ${{ secrets.AKSNAME }} --resource-group ${{ secrets.RG }}
+     - name: Deploy To AKS 
+       run : kubectl apply -f deployment.yaml
+     
    
     
