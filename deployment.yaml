@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: python
-        image: dummytest.azurecr.io/python:${{github.run_number}}
+        image: dummytest.azurecr.io/python:${{TAG}}
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
